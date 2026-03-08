@@ -1,7 +1,11 @@
-/* Mantosh Security Force — Main JavaScript */
-/* Version 1.0 | mantosecurity.com */
+/* ============================================================
+   MANTOSH SECURITY FORCE — main.js
+   Version: 2.0 (Latest — fully updated)
+   Website: mantosecurity.com
+   Last updated: March 2026
+   ============================================================ */
 
-document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
 
       // ── Page Loader ──
       const loader = document.getElementById('page-loader');
@@ -60,6 +64,18 @@ document.addEventListener('DOMContentLoaded', () => {
       };
       window.addEventListener('scroll', onScroll, { passive: true });
 
+      // ── Set min date to today ──
+      const dateEl = document.getElementById('date');
+      if (dateEl) dateEl.min = new Date().toISOString().split('T')[0];
+
+      // ── Popup close ──
+      document.getElementById('popup-close').addEventListener('click', () => {
+        document.getElementById('popup-overlay').classList.remove('show');
+      });
+      document.getElementById('popup-overlay').addEventListener('click', function(e) {
+        if (e.target === this) this.classList.remove('show');
+      });
+
       // ── Contact form — JS validation + Web3Forms submission ──
       const contactForm = document.getElementById('contactForm');
       if (contactForm) {
@@ -93,6 +109,11 @@ document.addEventListener('DOMContentLoaded', () => {
           document.getElementById(id).addEventListener('input', () => clearError(id));
         });
 
+        // Phone — allow digits only, max 10
+        document.getElementById('phone').addEventListener('input', function() {
+          this.value = this.value.replace(/\D/g, '').slice(0, 10);
+        });
+
         contactForm.addEventListener('submit', async function(e) {
           e.preventDefault();
 
@@ -100,7 +121,8 @@ document.addEventListener('DOMContentLoaded', () => {
           let valid = true;
 
           const name  = document.getElementById('name').value.trim();
-          const phone = document.getElementById('phone').value.trim();
+          const phone     = document.getElementById('phone').value.trim();
+          const phoneCode = document.getElementById('phone-code').value;
           const email = document.getElementById('email').value.trim();
 
           // Name — required, min 2 chars
@@ -108,12 +130,12 @@ document.addEventListener('DOMContentLoaded', () => {
             setError('name', 'Please enter your full name.'); valid = false;
           } else { clearError('name'); }
 
-          // Phone — required, must be 10 digits (Indian format)
-          const phoneClean = phone.replace(/[\s\-\+]/g, '');
+          // Phone — required, exactly 10 digits
+          const phoneClean = phone.replace(/[\s\-]/g, '');
           if (!phone) {
             setError('phone', 'Please enter your phone number.'); valid = false;
-          } else if (!/^\d{10,13}$/.test(phoneClean)) {
-            setError('phone', 'Enter a valid phone number (10 digits).'); valid = false;
+          } else if (!/^\d{10}$/.test(phoneClean)) {
+            setError('phone', 'Enter exactly 10 digits (no country code).'); valid = false;
           } else { clearError('phone'); }
 
           // Email — required, valid format
@@ -126,16 +148,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
           if (!valid) return; // Stop submission if errors
 
+          // Combine country code + phone number before submitting
+          const phoneInput = document.getElementById('phone');
+          const originalPhone = phoneInput.value;
+          phoneInput.value = phoneCode + originalPhone;
+
+          // Set min date to today
+          const dateInput = document.getElementById('date');
+
           // ── Submit to Web3Forms ──
           const btn = document.getElementById('submitBtn');
-          const successMsg = document.getElementById('formSuccess');
-          const errorMsg   = document.getElementById('formError');
+
+          // Popup helper
+          const showPopup = (type, title, msg) => {
+            document.getElementById('popup-icon').textContent  = type === 'success' ? '✅' : '❌';
+            document.getElementById('popup-title').textContent = title;
+            document.getElementById('popup-msg').textContent   = msg;
+            document.getElementById('popup-overlay').classList.add('show');
+          };
 
           btn.innerHTML = '<span>Sending...</span>';
           btn.style.opacity = '0.7';
           btn.disabled = true;
-          successMsg.style.display = 'none';
-          errorMsg.style.display   = 'none';
 
           try {
             const res  = await fetch('https://api.web3forms.com/submit', {
@@ -144,13 +178,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             const data = await res.json();
             if (data.success) {
-              successMsg.classList.add('success');
-              successMsg.style.display = 'block';
+              showPopup('success', 'Enquiry Sent!', 'Thank you. Your enquiry has been received. Our team will contact you within 24 hours.');
               contactForm.reset();
+              phoneInput.value = '';
             } else { throw new Error('Failed'); }
           } catch {
-            errorMsg.classList.add('error');
-            errorMsg.style.display = 'block';
+            phoneInput.value = originalPhone; // restore on error
+            showPopup('error', 'Something Went Wrong', 'We could not send your message. Please call us directly at +91 79912 72701.');
           } finally {
             btn.innerHTML = '<span>Send Enquiry</span>';
             btn.style.opacity = '1';

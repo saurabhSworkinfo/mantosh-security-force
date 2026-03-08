@@ -1,7 +1,11 @@
-/* Mantosh Security Force — Main Stylesheet */
-/* Version 1.0 | mantosecurity.com */
+/* ============================================================
+   MANTOSH SECURITY FORCE — style.css
+   Version: 2.0 (Latest — fully updated)
+   Website: mantosecurity.com
+   Last updated: March 2026
+   ============================================================ */
 
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
       --gold: #C9A84C; --gold-light: #E2C27D;
       --gold-dim: rgba(201,168,76,0.15); --gold-border: rgba(201,168,76,0.2);
@@ -28,6 +32,7 @@
 
     /* SECTION REUSABLES */
     .section-eyebrow { font-family: var(--font-body); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 12px; }
+    .section-eyebrow.eyebrow-tight { margin-bottom: 0.5rem; }
     .section-eyebrow::before { content: ''; display: inline-block; width: 28px; height: 1px; background: var(--gold); opacity: 0.6; }
     .section-title { font-family: var(--font-display); font-weight: 300; font-size: clamp(2rem,4vw,3.2rem); line-height: 1.15; color: var(--white); margin-bottom: 1.2rem; }
     .section-title em { font-style: italic; color: var(--gold-light); }
@@ -518,7 +523,7 @@
       font-family: var(--font-body);
       font-size: 0.76rem;
       font-weight: 300;
-      color: rgba(255,255,255,0.45);
+      color: var(--white-dim);
       padding-left: 1rem;
       position: relative;
       line-height: 1.5;
@@ -547,7 +552,7 @@
     }
 
     @media (max-width: 540px) {
-      #services { padding: 5rem 4%; }
+      #services { padding: 6rem 5%; }
       .services-grid { grid-template-columns: 1fr; }
       .service-card { padding: 1.8rem 1.5rem; }
     }
@@ -563,7 +568,7 @@
     }
 
     @media (max-width: 540px) {
-      #services { padding: 5rem 4%; }
+      #services { padding: 6rem 5%; }
       .services-grid { grid-template-columns: 1fr; }
       .service-card { padding: 1.8rem 1.5rem; }
     }
@@ -665,7 +670,7 @@
       font-size: 0.82rem;
       font-weight: 300;
       line-height: 1.7;
-      color: rgba(255,255,255,0.38);
+      color: var(--white-dim);
       max-width: 580px;
       transition: color 0.4s;
     }
@@ -687,7 +692,7 @@
 
     /* Sectors responsive */
     @media (max-width: 768px) {
-      #sectors { padding: 5rem 4%; }
+      #sectors { padding: 6rem 5%; }
       .sector-item { grid-template-columns: 48px 1fr; gap: 1.2rem; }
       .sector-icon { display: none; }
       .sector-name { font-size: 1.2rem; }
@@ -852,7 +857,7 @@
       font-size: 0.82rem;
       font-weight: 300;
       line-height: 1.8;
-      color: rgba(255,255,255,0.4);
+      color: var(--white-dim);
       transition: color 0.4s;
       max-width: 340px;
     }
@@ -933,7 +938,7 @@
     }
 
     @media (max-width: 480px) {
-      #training { padding: 5rem 4%; }
+      #training { padding: 6rem 5%; }
       .training-header { margin-bottom: 3.5rem; }
       .phase-title { font-size: 1.1rem; }
     }
@@ -1227,7 +1232,7 @@
     }
 
     @media (max-width: 600px) {
-      #clients { padding: 5rem 4%; }
+      #clients { padding: 6rem 5%; }
       .clients-testimonial-main { padding: 2rem 1.8rem; }
       .clients-testimonial-main::before { font-size: 6rem; top: 1.5rem; left: 1.5rem; }
       .clients-categories { grid-template-columns: 1fr; }
@@ -1349,8 +1354,56 @@
     }
 
     .form-select option {
-      background: #1a1a1a;
+      background: var(--black-card);
       color: var(--white);
+    }
+
+    /* ── Phone field with country code ── */
+    .phone-field {
+      display: flex;
+      align-items: stretch;
+      border-bottom: 1px solid var(--gold-border);
+    }
+
+    .phone-code {
+      background: var(--black-card);
+      border: none;
+      border-right: 1px solid var(--gold-border);
+      outline: none;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 400;
+      padding: 0.5rem 0.6rem 1.2rem;
+      cursor: pointer;
+      -webkit-appearance: none;
+      appearance: none;
+      min-width: 90px;
+      flex-shrink: 0;
+    }
+
+    .phone-code option { background: var(--black-card); }
+
+    .phone-input {
+      flex: 1;
+      border-bottom: none !important;
+    }
+
+    /* Override form-group border for phone since phone-field handles it */
+    .form-group:has(.phone-field) {
+      border-bottom: none;
+    }
+
+    /* ── Date picker styling ── */
+    .date-input {
+      color-scheme: dark;
+      cursor: pointer;
+    }
+
+    .date-input::-webkit-calendar-picker-indicator {
+      filter: invert(0.7) sepia(1) saturate(3) hue-rotate(5deg);
+      cursor: pointer;
+      opacity: 0.8;
     }
 
     .form-textarea {
@@ -1676,7 +1729,7 @@
     }
 
     @media (max-width: 600px) {
-      #contact { padding: 5rem 4%; }
+      #contact { padding: 6rem 5%; }
       .form-row { grid-template-columns: 1fr; }
       .form-group { border-right: none; }
       .contact-header { margin-bottom: 2.5rem; }
@@ -1691,10 +1744,37 @@
     .reveal-delay-4 { transition-delay: 0.46s; }
 
     /* FOOTER */
-    #footer { background: var(--black-soft); border-top: 1px solid var(--white-faint); padding: 2rem 5%; text-align: center; }
-    .footer-bottom p { font-size: 0.75rem; letter-spacing: 0.08em; color: var(--white-dim); }
+    #footer { background: var(--black-soft); border-top: 1px solid var(--white-faint); }
+    .footer-inner { max-width: var(--container); margin: 0 auto; padding: 3rem 5% 2rem; border-top: 1px solid var(--white-faint); }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--white-faint); }
+    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+    .footer-logo-icon { width: 32px; height: 32px; border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+    .footer-brand-name { font-family: var(--font-display); font-size: 1rem; font-weight: 600; color: var(--white); }
+    .footer-brand-sub { display: block; font-size: 0.52rem; font-family: var(--font-body); font-weight: 300; letter-spacing: 0.18em; color: var(--gold); text-transform: uppercase; }
+    .footer-brand-desc { font-family: var(--font-body); font-size: 0.78rem; font-weight: 300; line-height: 1.8; color: var(--white-dim); max-width: 280px; }
+    .footer-col-heading { font-family: var(--font-body); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+    .footer-nav-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-contact-list { display: flex; flex-direction: column; gap: 0.7rem; }
+    .footer-contact-item { font-family: var(--font-body); font-size: 0.78rem; font-weight: 300; color: var(--white-dim); text-decoration: none; transition: color 0.3s; }
+    .footer-contact-item:hover { color: var(--gold); }
+    .footer-email { word-break: break-all; }
+    .footer-offices { font-family: var(--font-body); font-size: 0.72rem; font-weight: 300; color: var(--white-faint); line-height: 1.7; margin-top: 0.3rem; opacity: 0.6; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-family: var(--font-body); font-size: 0.72rem; font-weight: 300; letter-spacing: 0.06em; color: var(--white-dim); opacity: 0.5; }
     .footer-link { font-family: var(--font-body); font-size: 0.78rem; font-weight: 300; color: var(--white-dim); text-decoration: none; transition: color 0.3s; display: inline-block; }
     .footer-link:hover { color: var(--gold); }
+
+    /* Footer mobile */
+    @media (max-width: 768px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+    }
+
+    /* Phone field mobile */
+    @media (max-width: 375px) {
+      .phone-code { min-width: 75px; font-size: 0.75rem; }
+      .phone-input { font-size: 0.82rem; }
+    }
 
     /* ══════════════════════════════════
        PAGE LOADER
@@ -1848,6 +1928,76 @@
       50% { transform: translateY(-5px); }
     }
 
+    /* ══════════════════════════════════
+       POPUP MODAL
+    ══════════════════════════════════ */
+    #popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 99998;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+      animation: popupFadeIn 0.25s ease;
+      display: none;
+    }
+
+    #popup-overlay.show {
+      display: flex;
+    }
+
+    #popup-box {
+      background: var(--black-card);
+      border: 1px solid var(--gold-border);
+      padding: 2.5rem 2rem;
+      max-width: 380px;
+      width: 90%;
+      text-align: center;
+      animation: popupSlideUp 0.3s ease;
+    }
+
+    #popup-icon {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+
+    #popup-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+
+    #popup-msg {
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      color: var(--white-dim);
+      line-height: 1.7;
+      margin-bottom: 1.6rem;
+    }
+
+    #popup-close {
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      padding: 0.7rem 2.5rem;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #popup-close:hover { background: var(--gold-light); }
+
+    @keyframes popupFadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes popupSlideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
     /* ── Active nav link ── */
     .nav-links a.nav-active {
       color: var(--white) !important;
@@ -1892,7 +2042,7 @@
       .hero-actions { flex-direction: column; width: 100%; }
       .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
       .stats-inner { grid-template-columns: repeat(2,1fr); }
-      #about { padding: 5rem 4%; }
+      #about { padding: 6rem 5%; }
       .about-img-main { height: 260px; }
       .about-badge { width: 95px; height: 95px; }
       .badge-number { font-size: 2rem; }
