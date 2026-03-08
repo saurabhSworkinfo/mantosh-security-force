@@ -115,6 +115,7 @@
 
     /* SECTION REUSABLES */
     .section-eyebrow { font-family: var(--font-body); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 12px; }
+    .section-eyebrow.eyebrow-tight { margin-bottom: 0.5rem; }
     .section-eyebrow::before { content: ''; display: inline-block; width: 28px; height: 1px; background: var(--gold); opacity: 0.6; }
     .section-title { font-family: var(--font-display); font-weight: 300; font-size: clamp(2rem,4vw,3.2rem); line-height: 1.15; color: var(--white); margin-bottom: 1.2rem; }
     .section-title em { font-style: italic; color: var(--gold-light); }
@@ -605,7 +606,7 @@
       font-family: var(--font-body);
       font-size: 0.76rem;
       font-weight: 300;
-      color: rgba(255,255,255,0.45);
+      color: var(--white-dim);
       padding-left: 1rem;
       position: relative;
       line-height: 1.5;
@@ -634,7 +635,7 @@
     }
 
     @media (max-width: 540px) {
-      #services { padding: 5rem 4%; }
+      #services { padding: 6rem 5%; }
       .services-grid { grid-template-columns: 1fr; }
       .service-card { padding: 1.8rem 1.5rem; }
     }
@@ -650,7 +651,7 @@
     }
 
     @media (max-width: 540px) {
-      #services { padding: 5rem 4%; }
+      #services { padding: 6rem 5%; }
       .services-grid { grid-template-columns: 1fr; }
       .service-card { padding: 1.8rem 1.5rem; }
     }
@@ -752,7 +753,7 @@
       font-size: 0.82rem;
       font-weight: 300;
       line-height: 1.7;
-      color: rgba(255,255,255,0.38);
+      color: var(--white-dim);
       max-width: 580px;
       transition: color 0.4s;
     }
@@ -774,7 +775,7 @@
 
     /* Sectors responsive */
     @media (max-width: 768px) {
-      #sectors { padding: 5rem 4%; }
+      #sectors { padding: 6rem 5%; }
       .sector-item { grid-template-columns: 48px 1fr; gap: 1.2rem; }
       .sector-icon { display: none; }
       .sector-name { font-size: 1.2rem; }
@@ -939,7 +940,7 @@
       font-size: 0.82rem;
       font-weight: 300;
       line-height: 1.8;
-      color: rgba(255,255,255,0.4);
+      color: var(--white-dim);
       transition: color 0.4s;
       max-width: 340px;
     }
@@ -1020,7 +1021,7 @@
     }
 
     @media (max-width: 480px) {
-      #training { padding: 5rem 4%; }
+      #training { padding: 6rem 5%; }
       .training-header { margin-bottom: 3.5rem; }
       .phase-title { font-size: 1.1rem; }
     }
@@ -1314,7 +1315,7 @@
     }
 
     @media (max-width: 600px) {
-      #clients { padding: 5rem 4%; }
+      #clients { padding: 6rem 5%; }
       .clients-testimonial-main { padding: 2rem 1.8rem; }
       .clients-testimonial-main::before { font-size: 6rem; top: 1.5rem; left: 1.5rem; }
       .clients-categories { grid-template-columns: 1fr; }
@@ -1436,7 +1437,7 @@
     }
 
     .form-select option {
-      background: #1a1a1a;
+      background: var(--black-card);
       color: var(--white);
     }
 
@@ -1763,7 +1764,7 @@
     }
 
     @media (max-width: 600px) {
-      #contact { padding: 5rem 4%; }
+      #contact { padding: 6rem 5%; }
       .form-row { grid-template-columns: 1fr; }
       .form-group { border-right: none; }
       .contact-header { margin-bottom: 2.5rem; }
@@ -1935,6 +1936,76 @@
       50% { transform: translateY(-5px); }
     }
 
+    /* ══════════════════════════════════
+       POPUP MODAL
+    ══════════════════════════════════ */
+    #popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 99998;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+      animation: popupFadeIn 0.25s ease;
+      display: none;
+    }
+
+    #popup-overlay.show {
+      display: flex;
+    }
+
+    #popup-box {
+      background: var(--black-card);
+      border: 1px solid var(--gold-border);
+      padding: 2.5rem 2rem;
+      max-width: 380px;
+      width: 90%;
+      text-align: center;
+      animation: popupSlideUp 0.3s ease;
+    }
+
+    #popup-icon {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+
+    #popup-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+
+    #popup-msg {
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      color: var(--white-dim);
+      line-height: 1.7;
+      margin-bottom: 1.6rem;
+    }
+
+    #popup-close {
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      padding: 0.7rem 2.5rem;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #popup-close:hover { background: var(--gold-light); }
+
+    @keyframes popupFadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes popupSlideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
     /* ── Active nav link ── */
     .nav-links a.nav-active {
       color: var(--white) !important;
@@ -1979,7 +2050,7 @@
       .hero-actions { flex-direction: column; width: 100%; }
       .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
       .stats-inner { grid-template-columns: repeat(2,1fr); }
-      #about { padding: 5rem 4%; }
+      #about { padding: 6rem 5%; }
       .about-img-main { height: 260px; }
       .about-badge { width: 95px; height: 95px; }
       .badge-number { font-size: 2rem; }
@@ -2194,7 +2265,7 @@
         <!-- Section Header -->
         <div class="services-header">
           <div class="services-header-left reveal">
-            <p class="section-eyebrow">What We Offer</p>
+            <p class="section-eyebrow reveal">What We Offer</p>
             <h2 class="section-title">
               Comprehensive<br /><em>Security Solutions</em>
             </h2>
@@ -2320,7 +2391,7 @@
       <div class="sectors-inner">
 
         <div class="sectors-header reveal">
-          <p class="section-eyebrow">Industries We Serve</p>
+          <p class="section-eyebrow reveal">Industries We Serve</p>
           <h2 class="section-title">
             Security Expertise<br /><em>Across Every Sector</em>
           </h2>
@@ -2415,7 +2486,7 @@
 
         <!-- Header -->
         <div class="training-header reveal">
-          <p class="section-eyebrow">Guard Excellence Program</p>
+          <p class="section-eyebrow reveal">Guard Excellence Program</p>
           <h2 class="section-title">
             Trained for Every<br /><em>Threat. Every Terrain.</em>
           </h2>
@@ -2572,7 +2643,7 @@
 
         <!-- Section header -->
         <div style="margin-bottom:3.5rem;" class="reveal">
-          <p class="section-eyebrow">Our Clients</p>
+          <p class="section-eyebrow reveal">Our Clients</p>
           <h2 class="section-title">
             Trusted by Leaders<br /><em>Across Every Industry</em>
           </h2>
@@ -2595,7 +2666,7 @@
         <!-- Client grid header -->
         <div class="clients-grid-header reveal">
           <div>
-            <p class="section-eyebrow" style="margin-bottom:0.5rem;">200+ Clients Served</p>
+            <p class="section-eyebrow eyebrow-tight">200+ Clients Served</p>
             <p style="font-family:var(--font-body);font-size:0.85rem;font-weight:300;color:var(--white-dim);line-height:1.7;max-width:480px;">From government infrastructure projects to five-star hospitality — MSF's client portfolio spans six industries across North and Central India.</p>
           </div>
           <div style="text-align:right;">
@@ -2720,7 +2791,7 @@
       <div class="contact-inner">
 
         <div class="contact-header reveal">
-          <p class="section-eyebrow">Get In Touch</p>
+          <p class="section-eyebrow reveal">Get In Touch</p>
           <h2 class="section-title">
             Request a Free<br /><em>Security Consultation</em>
           </h2>
@@ -2825,10 +2896,10 @@
               </div>
 
               <!-- Status messages -->
-              <div class="form-status success" id="formSuccess">
+              <div class="form-status" id="formSuccess">
                 ✦ &nbsp; Thank you. Your enquiry has been received. Our team will contact you within 24 hours.
               </div>
-              <div class="form-status error" id="formError">
+              <div class="form-status" id="formError">
                 Something went wrong. Please call us directly at +91 79912 72701.
               </div>
 
@@ -3014,6 +3085,14 @@
       };
       window.addEventListener('scroll', onScroll, { passive: true });
 
+      // ── Popup close ──
+      document.getElementById('popup-close').addEventListener('click', () => {
+        document.getElementById('popup-overlay').classList.remove('show');
+      });
+      document.getElementById('popup-overlay').addEventListener('click', function(e) {
+        if (e.target === this) this.classList.remove('show');
+      });
+
       // ── Contact form — JS validation + Web3Forms submission ──
       const contactForm = document.getElementById('contactForm');
       if (contactForm) {
@@ -3082,14 +3161,18 @@
 
           // ── Submit to Web3Forms ──
           const btn = document.getElementById('submitBtn');
-          const successMsg = document.getElementById('formSuccess');
-          const errorMsg   = document.getElementById('formError');
+
+          // Popup helper
+          const showPopup = (type, title, msg) => {
+            document.getElementById('popup-icon').textContent  = type === 'success' ? '✅' : '❌';
+            document.getElementById('popup-title').textContent = title;
+            document.getElementById('popup-msg').textContent   = msg;
+            document.getElementById('popup-overlay').classList.add('show');
+          };
 
           btn.innerHTML = '<span>Sending...</span>';
           btn.style.opacity = '0.7';
           btn.disabled = true;
-          successMsg.style.display = 'none';
-          errorMsg.style.display   = 'none';
 
           try {
             const res  = await fetch('https://api.web3forms.com/submit', {
@@ -3098,13 +3181,11 @@
             });
             const data = await res.json();
             if (data.success) {
-              successMsg.classList.add('success');
-              successMsg.style.display = 'block';
+              showPopup('success', 'Enquiry Sent!', 'Thank you. Your enquiry has been received. Our team will contact you within 24 hours.');
               contactForm.reset();
             } else { throw new Error('Failed'); }
           } catch {
-            errorMsg.classList.add('error');
-            errorMsg.style.display = 'block';
+            showPopup('error', 'Something Went Wrong', 'We could not send your message. Please call us directly at +91 79912 72701.');
           } finally {
             btn.innerHTML = '<span>Send Enquiry</span>';
             btn.style.opacity = '1';
@@ -3121,5 +3202,15 @@
       });
     });
   </script>
+  <!-- POPUP MODAL -->
+  <div id="popup-overlay">
+    <div id="popup-box">
+      <div id="popup-icon"></div>
+      <h3 id="popup-title"></h3>
+      <p id="popup-msg"></p>
+      <button id="popup-close">OK</button>
+    </div>
+  </div>
+
 </body>
 </html>
