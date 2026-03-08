@@ -1758,7 +1758,7 @@
     .footer-contact-item { font-family: var(--font-body); font-size: 0.78rem; font-weight: 300; color: var(--white-dim); text-decoration: none; transition: color 0.3s; }
     .footer-contact-item:hover { color: var(--gold); }
     .footer-email { word-break: break-all; }
-    .footer-offices { font-family: var(--font-body); font-size: 0.72rem; font-weight: 300; color: var(--white-faint); line-height: 1.7; margin-top: 0.3rem; opacity: 0.6; }
+    .footer-offices { font-family: var(--font-body); font-size: 0.75rem; font-weight: 400; color: var(--white-dim); line-height: 1.7; margin-top: 0.3rem; }
     .footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
     .footer-copy { font-family: var(--font-body); font-size: 0.72rem; font-weight: 300; letter-spacing: 0.06em; color: var(--white-dim); opacity: 0.5; }
     .footer-link { font-family: var(--font-body); font-size: 0.78rem; font-weight: 300; color: var(--white-dim); text-decoration: none; transition: color 0.3s; display: inline-block; }

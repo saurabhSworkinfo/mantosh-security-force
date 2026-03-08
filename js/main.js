@@ -66,7 +66,16 @@
 
       // ── Set min date to today ──
       const dateEl = document.getElementById('date');
-      if (dateEl) dateEl.min = new Date().toISOString().split('T')[0];
+      if (dateEl) {
+        const today = new Date().toISOString().split('T')[0];
+        dateEl.addEventListener('focus', function() {
+          this.type = 'date';
+          this.min = today;
+        });
+        dateEl.addEventListener('blur', function() {
+          if (!this.value) this.type = 'text';
+        });
+      }
 
       // ── Popup close ──
       document.getElementById('popup-close').addEventListener('click', () => {

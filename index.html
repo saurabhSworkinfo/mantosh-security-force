@@ -918,7 +918,7 @@
               <div class="form-row">
                 <div class="form-group full-width">
                   <label class="form-label" for="date">Event / Start Date <span style="font-weight:300;opacity:0.6;">(if applicable)</span></label>
-                  <input class="form-input date-input" type="date" id="date" name="date" />
+                  <input class="form-input date-input" type="text" id="date" name="date" placeholder="DD/MM/YYYY or type Ongoing" onfocus="if(this.type=='text'){this.type='date'}" onblur="if(!this.value){this.type='text'}" />
                 </div>
               </div>
 
